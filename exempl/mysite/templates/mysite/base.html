@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна сторінка</title>
+</head>
+<body>
+    {% for p in post_list %}
+        <h3><a href="{{p.id}}">{{ p.title }}</a></h3>
+        <p>{{ p.description }}</p>
+        <img src="{{p.image.url}}" width="200px" />
+        {{p.author}}
+    {% endfor %}
+
+</body>
+</html>

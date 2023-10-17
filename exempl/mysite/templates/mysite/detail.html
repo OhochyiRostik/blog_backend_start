@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Детальна сторінка</title>
+</head>
+<body>
+    <img src="{{post.image.url}}" width="200px" />
+    <div>
+        <br>
+        <p>Like: {{ post.likes_set.all.count }}</p>
+        <br>
+        <a href="{% url 'add_like' post.id %}">Like</a>
+        <a href="{% url 'del_like' post.id %}">Del Like</a>
+    </div>
+
+    <div class="form-comment">
+        <h3>Comment</h3>
+        <div>
+            <form action="{% url 'add_comment' post.id %}" method="post">
+                {% csrf_token %}
+                <label>You comment</label>
+                <textarea name="text"></textarea>
+                <label>You name</label>
+                <input type="text" name="name">
+                <label>You email</label>
+                <input type="email" name="email">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+
+    <div>
+        {% for c in post.comments_set.all %}
+        <div class="view-comment">
+            <h4>{{c.name}}</h4>
+            <p>{{c.text}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
